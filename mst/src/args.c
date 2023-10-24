@@ -1,6 +1,6 @@
 /* For copyright information, see olden_v1.0/COPYRIGHT */
 
-extern int atoi(const char *);
+extern int atoi(const char *); //exp: NT-array
 
 int NumNodes = 1;
 

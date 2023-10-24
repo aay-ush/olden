@@ -3,7 +3,7 @@
 #include "mst.h"
 
 typedef struct blue_return {
-  Vertex vert;
+  Vertex vert;  // _Ptr
   int dist;
 } BlueReturn;
 
@@ -13,11 +13,12 @@ typedef struct fc_br {
 } future_cell_BlueReturn;
 
 
-static BlueReturn BlueRule(Vertex inserted, Vertex vlist) 
+static BlueReturn BlueRule(Vertex inserted,
+        Vertex vlist)   // Ptr or array, should be ptr
 {
   BlueReturn retval;
-  Vertex tmp,prev;
-  Hash hash;
+  Vertex tmp,prev;  // _Ptrs
+  Hash hash;    // _Ptrs
   int dist,dist2;
   int count;
   
@@ -26,7 +27,7 @@ static BlueReturn BlueRule(Vertex inserted, Vertex vlist)
     return retval;
   }
 
-  prev = vlist;
+  prev = vlist; // _Ptr
   retval.vert = vlist;
   retval.dist = vlist->mindist;
   hash = vlist->edgehash;
@@ -49,7 +50,7 @@ static BlueReturn BlueRule(Vertex inserted, Vertex vlist)
       count++;
       if (tmp==inserted) 
         {
-          Vertex next;
+          Vertex next;  // ptr
 
           next = tmp->next;
           prev->next = next;
@@ -82,9 +83,11 @@ static BlueReturn BlueRule(Vertex inserted, Vertex vlist)
 
           
 
-static Vertex MyVertexList = NULL;
+static Vertex MyVertexList = NULL;  // ptr
 
-static BlueReturn Do_all_BlueRule(Vertex inserted, int nproc, int pn) {
+static BlueReturn Do_all_BlueRule(Vertex inserted,  // Ptr
+        int nproc,
+        int pn) {
   future_cell_BlueReturn fcleft;
   BlueReturn retright;
 
@@ -105,9 +108,12 @@ static BlueReturn Do_all_BlueRule(Vertex inserted, int nproc, int pn) {
   }
 }
 
-static int ComputeMst(Graph graph,int numproc,int numvert) 
+static int ComputeMst(Graph graph,  // ptr
+        int numproc,
+        int numvert)
 {
-  Vertex inserted,tmp;
+  Vertex inserted; // Array
+  Vertex tmp;  // Ptrs
   int cost=0,dist;
 
   /* make copy of graph */
@@ -136,7 +142,7 @@ static int ComputeMst(Graph graph,int numproc,int numvert)
 
 int main(int argc, char *argv[]) 
 {
-  Graph graph;
+  Graph graph;  // ptr
   int dist;
   int size;
  

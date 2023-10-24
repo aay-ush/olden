@@ -6,7 +6,7 @@
 #define assert(num,a) if (!(a)) {printf("Assertion failure:%d in hash\n",num); exit(-1);}
 
 static int remaining = 0;
-static char *temp;
+static char *temp;  //exp: NT-array
 
 static char *localmalloc(int size) 
 {
@@ -26,7 +26,7 @@ static char *localmalloc(int size)
 
 #define localfree(sz)
 
-Hash MakeHash(int size, int (*map)(unsigned int)) 
+Hash MakeHash(int size, int (*map)(unsigned int)) // _ptr
 {
   Hash retval;
   int i;
@@ -43,7 +43,7 @@ Hash MakeHash(int size, int (*map)(unsigned int))
 void *HashLookup(unsigned int key, Hash hash)
 {
   int j;
-  HashEntry ent;
+  HashEntry ent;    // _Ptr
 
   j = (hash->mapfunc)(key);        /* 14% miss in hash->mapfunc */  
   assert(1,j>=0);
@@ -56,9 +56,9 @@ void *HashLookup(unsigned int key, Hash hash)
   return NULL;
 }
 
-void HashInsert(void *entry,unsigned int key,Hash hash) 
+void HashInsert(void *entry,unsigned int key,Hash hash) // entry -> _ptr
 {
-  HashEntry ent;
+  HashEntry ent;    // _Ptr
   int j;
   
   assert(3,!HashLookup(key,hash));
@@ -72,7 +72,7 @@ void HashInsert(void *entry,unsigned int key,Hash hash)
 }
 
 void HashDelete(unsigned key, Hash hash) {
-  HashEntry tmp;
+  HashEntry tmp;    // _Ptr
   int j = (hash->mapfunc)(key);
   HashEntry *ent = &hash->array[j];
 

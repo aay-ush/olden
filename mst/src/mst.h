@@ -9,12 +9,12 @@ extern int NumNodes;
 
 typedef struct vert_st {
   int mindist;
-  struct vert_st *next;
-  Hash edgehash;
+  struct vert_st *next; // ptr
+  Hash edgehash;    // Ptr
 } *Vertex;
 
 typedef struct graph_st {
-  Vertex vlist[MAXPROC];
+  Vertex vlist[MAXPROC];    // Arrayptr
 } *Graph;
 
 Graph MakeGraph(int numvert, int numproc);

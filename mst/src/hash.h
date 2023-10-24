@@ -4,13 +4,13 @@
 
 typedef struct hash_entry {
   unsigned int key;
-  void *entry;
-  struct hash_entry *next;
+  void *entry;  // _Ptr to what?
+  struct hash_entry *next;  // _Ptr
 } *HashEntry;
 
 typedef struct hash {
-  HashEntry *array;
-  int (*mapfunc)(unsigned int);
+  HashEntry *array; // _Ptr
+  int (*mapfunc)(unsigned int); // _Ptr
   int size;
 } *Hash;
 
